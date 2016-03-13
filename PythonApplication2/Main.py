@@ -8,9 +8,11 @@ dataFile = open("c:\users\jk12559\desktop\sampleData.csv")
 dataDict = csv.DictReader(dataFile)
 #assign data to player class
 players = [Player(row) for row in dataDict]
-QB = [player for player in players if player.position == "QB"]
-WR = [player for player in players if player.position == "WR"]
-playersGroup = {"QB": QB, "WR": WR}
+
+playersGroup = {}
+for pos in positions:
+    posList = [player for player in players if player.position == pos]
+    playersGroup[pos] = posList
 
 for group in playersGroup.itervalues():
     group.sort(key = lambda x: x.points, reverse = True)
