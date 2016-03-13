@@ -1,5 +1,6 @@
 import csv
 from Player import Player
+from scipy import stats
 
 positions = ["QB", "WR"]
 
@@ -19,7 +20,10 @@ for group in playersGroup.itervalues():
     for player in group:
         player.rank = group.index(player) + 1
 
-
 #do linear regression with points as dependent and rank as independent variables
-
+for pos, players in playersGroup.iteritems():
+    x = map(lambda player: player.rank,players)
+    y = map(lambda player: player.points,players)
+    result = stats.linregress(x,y)
+    print (pos, result)
 #return smoothed values for each player rank
