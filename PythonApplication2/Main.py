@@ -16,7 +16,7 @@ positions = set([player.position for player in players])
 #Group players by position
 playersGroup = {}
 for pos in positions:
-    posList = [player for player in players if player.position == pos]
+    posList = [player for player in players if player.position == pos if player.points != 0]
     playersGroup[pos] = posList
 
 #Rank players
